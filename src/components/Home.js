@@ -1,7 +1,10 @@
 import React from 'react'
+import SideBar from './SideBar'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div className=''>
+        <SideBar/>
+    </div>
   )
 }
