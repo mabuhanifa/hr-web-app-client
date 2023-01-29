@@ -4,9 +4,12 @@ import SideBar from './SideBar'
 
 export default function Home() {
   return (
-    <div className=''>
-      <NavBar/>
-        <SideBar/>
+    <div>
+      <NavBar />
+      <div className="flex">
+        <SideBar />
+        <div>hello world</div>
+      </div>
     </div>
   )
 }
