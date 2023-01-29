@@ -15,10 +15,7 @@ export default function SideBar() {
         <Link to={"/leave"}>
           <a>Leave Applications</a>
         </Link>
-        <Link to={"/"}>
-          <a>About</a>
-        </Link>
-        <Link to={"/"}>
+        <Link to={"/contact"}>
           <a>Contact</a>
         </Link>
       </div>

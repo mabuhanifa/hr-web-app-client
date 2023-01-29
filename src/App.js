@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
+import Contact from "./components/Contact";
 import Employees from "./components/Employees";
 import Home from "./components/Home";
 import Leaves from "./components/Leaves";
@@ -13,6 +14,7 @@ function App() {
         <Route path="employees" element={<Employees />} />
         <Route path="leave" element={<Leaves/>} />
         <Route path="profile" element={<Profile/>} />
+        <Route path="contact" element={<Contact/>} />
       </Route>
     </Routes>
   );
