@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,10 +10,10 @@ export default function SideBar() {
           <a>Profile</a>
         </Link>
         <Link to={"/employees"}>
-          <a>Users</a>
+          <a>Employees</a>
         </Link>
-        <Link to={"/leaves"}>
-          <a>Pending Leaves</a>
+        <Link to={"/leave"}>
+          <a>Leave Applications</a>
         </Link>
         <Link to={"/"}>
           <a>About</a>

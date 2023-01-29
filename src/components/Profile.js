@@ -1,8 +1,8 @@
-import React from "react";
-import NavBar from "./NavBar";
-import SideBar from "./SideBar";
+import React from 'react'
+import NavBar from './NavBar'
+import SideBar from './SideBar'
 
-export default function Employees() {
+export default function Profile() {
   return (
     <div>
       <NavBar />
@@ -11,5 +11,5 @@ export default function Employees() {
         <div>hello world</div>
       </div>
     </div>
-  );
+  )
 }
