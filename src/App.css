@@ -1,4 +1,9 @@
-.side_bar > a {
+.side_bar p {
   padding-bottom: 5px;
+  border-bottom: 1px solid white;
+}
+.home {
+  margin-top: 25px;
+  margin-bottom: 80px;
   border-bottom: 1px solid white;
 }
