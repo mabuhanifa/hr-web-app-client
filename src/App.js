@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Leaves from "./components/Leaves";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (
@@ -13,10 +14,12 @@ function App() {
       <Route path="/">
         <Route index element={<Home />} />
         <Route path="employees" element={<Employees />} />
-        <Route path="leave" element={<Leaves/>} />
-        <Route path="profile" element={<Profile/>} />
-        <Route path="contact" element={<Contact/>} />
-        <Route path="login" element={<Login/>} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Login />} />
+      </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route element={<Leaves />} path="/leave" />
       </Route>
     </Routes>
   );
