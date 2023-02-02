@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function NavBar() {
   return (
@@ -7,8 +8,16 @@ export default function NavBar() {
         <p>Home</p>
         <p>About</p>
         <p>Contact</p>
-        <p>Home</p>
-        <p>Home</p>
+        <Link to={'/login'}>
+        <button className='bg-indigo-600 px-5 py-2 rounded'>
+            Log In
+          </button>
+        </Link>
+        <p>
+          <button className='bg-red-600 px-5 py-2 rounded'>
+            Log Out
+          </button>
+        </p>
 
       </div>
     </div>
