@@ -1,25 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEmployees } from "../context/Context";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
 export default function Login() {
+  const {
+    state: { loggedUser },
+    dispatch,
+  } = useEmployees();
+  console.log(loggedUser);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const formSubmit = (e) => {
     e.preventDefault();
+    dispatch({
+      type: "login",
+      payload: {
+        email,
+        password,
+      },
+    });
+
     setEmail("");
     setPassword("");
-    setError("login failed");
+    navigate("/");
   };
+
   return (
     <div>
       <NavBar />
       <div className="flex">
         <SideBar />
         <div className="p-10">
-          
           <div>
             <form onSubmit={formSubmit}>
               <div>

@@ -7,10 +7,6 @@ export default function Home() {
   const { state, dispatch } = useEmployees();
   console.log(state);
   useEffect(() => {
-    dispatch({
-      type: "login",
-      payload: user,
-    });
     localStorage.setItem("loggedUser", JSON.stringify(user));
   }, [dispatch]);
   return (
