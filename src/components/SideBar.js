@@ -14,7 +14,7 @@ export default function SideBar() {
           <p>Profile</p>
         </Link>
         <Link to={"/employees"}>
-          <p>Employees</p>
+          <p>Dashboard</p>
         </Link>
         <Link to={"/leave"}>
           <p>Leave Applications</p>
