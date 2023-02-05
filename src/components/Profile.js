@@ -29,7 +29,9 @@ export default function Profile() {
       <NavBar />
       <div className="flex">
         <SideBar />
-        
+        <div>
+          profile
+        </div>
       </div>
     </div>
   );

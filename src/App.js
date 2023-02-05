@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Contact from "./components/Contact";
-import Employees from "./components/Employees";
+import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import Leaves from "./components/Leaves";
 import Login from "./components/Login";
@@ -13,7 +13,7 @@ function App() {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="employees" element={<Employees />} />
+        <Route path="employees" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />

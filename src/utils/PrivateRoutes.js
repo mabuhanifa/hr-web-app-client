@@ -1,9 +1,12 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useEmployees } from "../context/Context";
 
 export default function PrivateRoutes() {
-    let auth = {'token':true}
-    return(
-        auth.token ? <Outlet/> : <Navigate to="/login"/>
-    )
+  const {
+    state: { loggedUser },
+    dispatch,
+  } = useEmployees();
+  console.log(loggedUser);
+  return loggedUser.email ? <Outlet /> : <Navigate to="/login" />;
 }
