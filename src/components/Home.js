@@ -6,7 +6,7 @@ const user = { name: "Mohammed Abu Hanifa" };
 export default function Home() {
   const { state, dispatch } = useEmployees();
   useEffect(() => {
-    localStorage.setItem("loggedUser", JSON.stringify(user));
+    
   }, [dispatch]);
   return (
     <div>

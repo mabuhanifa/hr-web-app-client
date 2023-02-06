@@ -37,6 +37,7 @@ export default function Login() {
       toast.error("Login Failed");
     }
     const data = res.data.data;
+    const local = { ...data, password: "null" };
 
     await dispatch({
       type: "login",
@@ -44,6 +45,7 @@ export default function Login() {
         ...data,
       },
     });
+    localStorage.setItem("loggedUser", JSON.stringify(local));
   };
 
   return (

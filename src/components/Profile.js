@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmployees } from "../context/Context";
 import NavBar from "./NavBar";
@@ -10,7 +10,6 @@ export default function Profile() {
     state: { loggedUser },
     dispatch,
   } = useEmployees();
-  console.log(loggedUser);
   const [img, setImg] = useState();
   const uploadImg = () => {
     const formData = new FormData();
@@ -50,6 +49,17 @@ export default function Profile() {
     setPassword("");
     navigate("/");
   };
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser")) {
+      const user = JSON.parse(localStorage.getItem("loggedUser"));
+      dispatch({
+        type: "login",
+        payload: {
+          ...user,
+        },
+      });
+    }
+  }, [dispatch]);
   return (
     <div>
       <NavBar />
@@ -57,10 +67,10 @@ export default function Profile() {
         <SideBar />
         <div>
           <div>
-          <h1>email: {loggedUser.email}</h1>
+            <h1>email: {loggedUser.email}</h1>
           </div>
           <div>
-          <form onSubmit={formSubmit}>
+            <form onSubmit={formSubmit}>
               <div>
                 <label htmlFor="email">Email</label>
                 <br />

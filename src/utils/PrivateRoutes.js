@@ -5,8 +5,6 @@ import { useEmployees } from "../context/Context";
 export default function PrivateRoutes() {
   const {
     state: { loggedUser },
-    dispatch,
   } = useEmployees();
-  console.log(loggedUser);
   return loggedUser.email ? <Outlet /> : <Navigate to="/login" />;
 }
