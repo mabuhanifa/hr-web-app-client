@@ -5,7 +5,6 @@ import SideBar from "./SideBar";
 const user = { name: "Mohammed Abu Hanifa" };
 export default function Home() {
   const { state, dispatch } = useEmployees();
-  console.log(state);
   useEffect(() => {
     localStorage.setItem("loggedUser", JSON.stringify(user));
   }, [dispatch]);

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmployees } from "../context/Context";
@@ -16,19 +17,30 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
-    dispatch({
+    const res = await axios.post(`http://localhost:5000/login/${email}`, {
+      password,
+    });
+
+    if (res.data.login) {
+      navigate("/");
+    } else {
+      setError("Login Failed");
+    }
+    const data = res.data.data;
+
+    console.log(data);
+
+    await dispatch({
       type: "login",
       payload: {
-        email,
-        password,
+        ...data,
       },
     });
 
     setEmail("");
     setPassword("");
-    navigate("/");
   };
 
   return (
