@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useEmployees } from "../context/Context";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -10,12 +12,14 @@ export default function Login() {
     state: { loggedUser },
     dispatch,
   } = useEmployees();
-  console.log(loggedUser);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const goTo = () => {
+    navigate("/");
+  };
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -24,13 +28,15 @@ export default function Login() {
     });
 
     if (res.data.login) {
-      navigate("/");
+      toast.success("Successfully Logged in");
+      setTimeout(goTo, 1000);
+      setEmail("");
+      setPassword("");
     } else {
       setError("Login Failed");
+      toast.error("Login Failed");
     }
     const data = res.data.data;
-
-    console.log(data);
 
     await dispatch({
       type: "login",
@@ -38,14 +44,12 @@ export default function Login() {
         ...data,
       },
     });
-
-    setEmail("");
-    setPassword("");
   };
 
   return (
     <div>
       <NavBar />
+      <ToastContainer />
       <div className="flex">
         <SideBar />
         <div className="p-10">
