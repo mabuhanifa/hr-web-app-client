@@ -13,13 +13,13 @@ function App() {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route element={<Leaves />} path="/leave" />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   );

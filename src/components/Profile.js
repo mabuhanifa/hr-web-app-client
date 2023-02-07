@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmployees } from "../context/Context";
 import useLocal from "../utils/useLocal";
@@ -51,39 +51,21 @@ export default function Profile() {
     setPassword("");
     navigate("/");
   };
-  useEffect(() => {
-    if (localStorage.getItem("loggedUser")) {
-      const user = JSON.parse(localStorage.getItem("loggedUser"));
-      dispatch({
-        type: "login",
-        payload: {
-          ...user,
-        },
-      });
-    }
-  }, [dispatch]);
   return (
     <div>
       <NavBar />
       <div className="flex">
         <SideBar />
-        <div>
+        <div className=" p-10">
           <div>
-            <h1>email: {loggedUser.email}</h1>
+            <img src={loggedUser.img} alt="" className="h-40 w-40 my-10"/>
+            <h1 className="text-xl font-bold">Name: {loggedUser.name}</h1>
+            <h1 className="text-xl font-bold my-5">Email: {loggedUser.email}</h1>
+            <h1 className="text-xl font-bold">Department: {loggedUser.department}</h1>
           </div>
           <div>
             <form onSubmit={formSubmit}>
-              <div>
-                <label htmlFor="email">Email</label>
-                <br />
-                <input
-                  type="text"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
-                />
-              </div>
+              
               <div>
                 <label htmlFor="password">Password</label>
                 <br />
@@ -93,6 +75,7 @@ export default function Profile() {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
+                  required={true}
                 />
               </div>
               <button className="bg-indigo-600 px-10 py-3 text-white rounded">

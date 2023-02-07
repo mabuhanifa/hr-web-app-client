@@ -26,7 +26,6 @@ export default function Login() {
       password,
     });
     const data = res.data.data;
-    const local = { ...data, password: "null" };
 
     if (res.data.login) {
       toast.success("Successfully Logged in");
@@ -39,7 +38,7 @@ export default function Login() {
           ...data,
         },
       });
-      localStorage.setItem("loggedUser", JSON.stringify(local));
+      localStorage.setItem("loggedUser", JSON.stringify(data));
     } else {
       setError("Login Failed");
       toast.error("Login Failed");
@@ -64,7 +63,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
-                  required
+                  required={true}
                 />
               </div>
               <div>
@@ -76,7 +75,7 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
-                  required
+                  required={true}
                 />
               </div>
               <button className="bg-indigo-600 px-10 py-3 text-white rounded">

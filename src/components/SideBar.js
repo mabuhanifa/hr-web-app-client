@@ -6,6 +6,7 @@ import { RxDashboard } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
 export default function SideBar() {
+  
   return (
     <div className="bg-gray-800 text-gray-100 h-screen p-10 w-1/6 text-lg font-semibold">
       <div className="home text-xl">

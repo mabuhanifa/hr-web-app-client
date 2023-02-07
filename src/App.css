@@ -7,3 +7,7 @@
   margin-bottom: 80px;
   border-bottom: 1px solid white;
 }
+.tbl th {
+  padding: 10px;
+  @apply bg-slate-200;
+}
