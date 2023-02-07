@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEmployees } from "../context/Context";
+import useLocal from "../utils/useLocal";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
 export default function Login() {
+  useLocal();
   const { dispatch } = useEmployees();
 
   const [email, setEmail] = useState("");
@@ -62,6 +64,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
+                  required
                 />
               </div>
               <div>
@@ -73,6 +76,7 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   className="px-5 py-2 bg-gray-200 my-3 rounded-sm focus:outline-blue-700"
+                  required
                 />
               </div>
               <button className="bg-indigo-600 px-10 py-3 text-white rounded">

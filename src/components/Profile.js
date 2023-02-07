@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmployees } from "../context/Context";
+import useLocal from "../utils/useLocal";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
 export default function Profile() {
+  useLocal();
   const {
     state: { loggedUser },
     dispatch,
