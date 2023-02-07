@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEmployees } from "../context/Context";
 import useLocal from "../utils/useLocal";
@@ -13,38 +12,15 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const {
     state: { loggedUser },
-    dispatch,
   } = useEmployees();
 
-  const [img, setImg] = useState();
-
-  const uploadImg = () => {
-    const formData = new FormData();
-    formData.append("file", img);
-    formData.append("upload_preset", "pqsu7umy");
-    axios
-      .post("https://api.cloudinary.com/v1_1/dw4ey8uzt/image/upload", formData)
-      .then((res) =>
-        axios.post("http://localhost:5000/users", { img: res.data.secure_url })
-      );
-
-    // <div>
-    //     <input
-    //       type="file"
-    //       name=""
-    //       id=""
-    //       onChange={(e) => setImg(e.target.files[0])}
-    //     />
-    //     <button onClick={uploadImg}>upload</button>
-    //   </div>
-  };
   const changePassword = async (e) => {
     e.preventDefault();
     if (password.length > 5) {
       const body = {
         ...loggedUser,
-        password: password,
-        passreset: false,
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+        passreset: true,
       };
       const res = await axios.put(
         `http://localhost:5000/user/${loggedUser.email}`,
@@ -52,25 +28,13 @@ export default function Profile() {
           body,
         }
       );
-      console.log(res);
       toast.success("Password updated");
+      setPassword("");
     } else {
       toast.error("Password should be at least 6 characters");
     }
   };
-  const navigate = useNavigate();
 
-  const formSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: "login",
-      payload: {
-        password,
-      },
-    });
-    setPassword("");
-    navigate("/");
-  };
   return (
     <div>
       <NavBar />
@@ -88,8 +52,10 @@ export default function Profile() {
             </h1>
           </div>
           {!loggedUser.passreset && (
-              <h2 className="text-red-500 font-bold text-xl my-10">Please Reset your Password to make a leave request</h2>
-            )}
+            <h2 className="text-red-500 font-bold text-xl my-10">
+              Please Reset your Password to make a leave request
+            </h2>
+          )}
           <div>
             <form>
               <div className="my-10">

@@ -8,7 +8,7 @@ import SideBar from "./SideBar";
 
 export default function Dashboard() {
   const {
-    state: { employees, loggedUser },
+    state: { employees },
     dispatch,
   } = useEmployees();
 
@@ -23,12 +23,12 @@ export default function Dashboard() {
     });
   };
 
-  const updateStatus = async (email, status) => {
+  const updateStatus = async (e, status) => {
     const body = {
-      ...loggedUser,
+      ...e,
       leavestatus: status,
     };
-    const res = await axios.put(`http://localhost:5000/user/${email}`, {
+    const res = await axios.put(`http://localhost:5000/user/${e.email}`, {
       body,
     });
     console.log(res);
@@ -82,7 +82,7 @@ export default function Dashboard() {
                               <button
                                 className="bg-green-500 px-3 py-1 mr-2"
                                 onClick={() =>
-                                  updateStatus(e.email, "Approved")
+                                  updateStatus(e, "Approved")
                                 }
                               >
                                 Approve
@@ -90,7 +90,7 @@ export default function Dashboard() {
                               <button
                                 className="bg-red-500 px-3 py-1"
                                 onClick={() =>
-                                  updateStatus(e.email, "Declined")
+                                  updateStatus(e, "Declined")
                                 }
                               >
                                 Decline

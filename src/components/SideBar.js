@@ -4,9 +4,12 @@ import { FcLeave } from "react-icons/fc";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { useEmployees } from "../context/Context";
 
 export default function SideBar() {
-  
+  const {
+    state: {  loggedUser },
+  } = useEmployees();
   return (
     <div className="bg-gray-800 text-gray-100 h-screen p-10 w-1/6 text-lg font-semibold">
       <div className="home text-xl">
@@ -21,9 +24,9 @@ export default function SideBar() {
         <Link to={"/profile"}>
           <p><AiFillIdcard  className="inline pb-1 text-2xl mr-1" />Profile</p>
         </Link>
-        <Link to={"/dashboard"}>
+        {loggedUser.isadmin && <Link to={"/dashboard"}>
           <p><RxDashboard  className="inline pb-1 text-2xl mr-1" />Dashboard</p>
-        </Link>
+        </Link>}
         <Link to={"/leave"}>
           <p><FcLeave className="inline pb-1 text-2xl mr-1" />Leave Applications</p>
         </Link>
