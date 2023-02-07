@@ -2,16 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useEmployees } from "../context/Context";
-import useLocal from "../utils/useLocal";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
 export default function Profile() {
-  useLocal();
-
   const [password, setPassword] = useState("");
   const {
     state: { loggedUser },
+    dispatch,
   } = useEmployees();
 
   const changePassword = async (e) => {
@@ -28,11 +26,39 @@ export default function Profile() {
           body,
         }
       );
+      const user = res.data.data[0];
+
+      dispatch({
+        type: "login",
+        payload: user,
+      });
+      localStorage.setItem("loggedUser", JSON.stringify(user));
       toast.success("Password updated");
       setPassword("");
     } else {
       toast.error("Password should be at least 6 characters");
     }
+  };
+  const makeLeaveRequest = async () => {
+    const body = {
+      ...loggedUser,
+      leavestatus: "pending",
+    };
+    const res = await axios.put(
+      `http://localhost:5000/user/${loggedUser.email}`,
+      {
+        body,
+      }
+    );
+    const user = res.data.data[0];
+    dispatch({
+      type: "login",
+      payload: user,
+    });
+    localStorage.setItem("loggedUser", JSON.stringify(user));
+    
+    toast.success("Leave status changed");
+    setPassword("");
   };
 
   return (
@@ -51,6 +77,23 @@ export default function Profile() {
               Department: {loggedUser.department}
             </h1>
           </div>
+          {loggedUser.passreset && (
+            <div className="my-10">
+              <h2 className="my-5 font-bold text-xl">
+                Your current leave Status: <span className="bg-gray-500 text-white p-2 rounded-xl">
+                {loggedUser.leavestatus}
+                </span>
+              </h2>
+              {loggedUser.leavestatus === "no request" && (
+                <button
+                  className="bg-indigo-700 px-5 py-2 text-white"
+                  onClick={makeLeaveRequest}
+                >
+                  Make a leave request
+                </button>
+              )}
+            </div>
+          )}
           {!loggedUser.passreset && (
             <h2 className="text-red-500 font-bold text-xl my-10">
               Please Reset your Password to make a leave request

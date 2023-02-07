@@ -21,9 +21,15 @@ export default function Home() {
                 <Link to='/profile'>Go to your Profile</Link></span> </h2>
             )}
           </div>
+          <div className="my-20">
+            {loggedUser.name && loggedUser.passreset && (
+              <h2 className="text-red-500 font-bold text-xl">Welcome to Astha Group <span className=" underline">
+                <Link to='/profile'>Go to your Profile</Link></span> </h2>
+            )}
+          </div>
           <div>
             {loggedUser.isadmin && (
-              <h2 className="text-green-500 font-bold text-xl">Welcome Admin.Go to your DashBoard to Manage Employees and their leave request <span className=" underline">
+              <h2 className="text-green-500 font-bold text-xl">Welcome Admin. Go to your DashBoard to Manage Employees and their leave request <span className=" underline">
                 <Link to='/dashboard'>Dashboard</Link></span> </h2>
             )}
           </div>

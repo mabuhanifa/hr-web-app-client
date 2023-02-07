@@ -8,7 +8,9 @@ export default function Contact() {
       <NavBar />
       <div className="flex">
         <SideBar />
-        <div>hello world</div>
+        <div className="p-5">
+          www.astha.group
+        </div>
       </div>
     </div>
   );
