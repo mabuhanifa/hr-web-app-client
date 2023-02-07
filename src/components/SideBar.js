@@ -20,7 +20,7 @@ export default function SideBar() {
         <Link to={"/profile"}>
           <p><AiFillIdcard  className="inline pb-1 text-2xl mr-1" />Profile</p>
         </Link>
-        <Link to={"/employees"}>
+        <Link to={"/dashboard"}>
           <p><RxDashboard  className="inline pb-1 text-2xl mr-1" />Dashboard</p>
         </Link>
         <Link to={"/leave"}>

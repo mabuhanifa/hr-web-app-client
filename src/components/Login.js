@@ -8,10 +8,7 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
 export default function Login() {
-  const {
-    state: { loggedUser },
-    dispatch,
-  } = useEmployees();
+  const { dispatch } = useEmployees();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,26 +23,25 @@ export default function Login() {
     const res = await axios.post(`http://localhost:5000/login/${email}`, {
       password,
     });
+    const data = res.data.data;
+    const local = { ...data, password: "null" };
 
     if (res.data.login) {
       toast.success("Successfully Logged in");
       setTimeout(goTo, 1000);
       setEmail("");
       setPassword("");
+      await dispatch({
+        type: "login",
+        payload: {
+          ...data,
+        },
+      });
+      localStorage.setItem("loggedUser", JSON.stringify(local));
     } else {
       setError("Login Failed");
       toast.error("Login Failed");
     }
-    const data = res.data.data;
-    const local = { ...data, password: "null" };
-
-    await dispatch({
-      type: "login",
-      payload: {
-        ...data,
-      },
-    });
-    localStorage.setItem("loggedUser", JSON.stringify(local));
   };
 
   return (

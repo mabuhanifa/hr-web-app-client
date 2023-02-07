@@ -8,7 +8,12 @@ export default function Dashboard() {
       <NavBar />
       <div className="flex">
         <SideBar />
-        <div>hello world</div>
+        <div>
+          <div>
+            
+          </div>
+          <div></div>
+        </div>
       </div>
     </div>
   );
